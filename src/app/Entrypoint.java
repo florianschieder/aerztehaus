@@ -1,7 +1,5 @@
 package app;
 
-import java.sql.ResultSet;
-
 import database.MysqlConnectionConfiguration;
 import database.DBManager;
 
@@ -14,7 +12,13 @@ public class Entrypoint
 			MysqlConnectionConfiguration configuration =
 				deriveConfigurationFromCommandLine(args);
 			DBManager manager = new DBManager(configuration);
-			ResultSet set = manager.executeQuery("SELECT * FROM Patient");
+			
+			BillRecordRepository repository = 
+				new BillRecordRepository(manager);
+			
+			for (BillRecord bill : repository.fetchAll()) {
+				System.out.println(bill);
+			}
 		}
 		catch (Exception e) {
 			System.err.println("exiting due to uncaught failure: " + e);
