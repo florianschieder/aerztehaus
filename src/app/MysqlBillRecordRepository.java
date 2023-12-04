@@ -9,12 +9,12 @@ import database.DBManager;
 import database.Repository;
 
 
-public class BillRecordRepository
+public class MysqlBillRecordRepository
 	implements Repository<BillRecord>
 {
 	private DBManager manager;
 	
-	public BillRecordRepository(DBManager manager)
+	public MysqlBillRecordRepository(DBManager manager)
 	{
 		this.manager = manager;
 	}

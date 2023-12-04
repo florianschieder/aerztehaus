@@ -12,10 +12,10 @@ public class Entrypoint
 			MysqlConnectionConfiguration configuration =
 				deriveConfigurationFromCommandLine(args);
 			DBManager manager = new DBManager(configuration);
-			
-			BillRecordRepository repository = 
-				new BillRecordRepository(manager);
-			
+
+			MysqlBillRecordRepository repository = 
+				new MysqlBillRecordRepository(manager);
+
 			for (BillRecord bill : repository.fetchAll()) {
 				System.out.println(bill);
 			}
