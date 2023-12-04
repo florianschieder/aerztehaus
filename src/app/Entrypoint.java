@@ -15,10 +15,8 @@ public class Entrypoint
 
 			MysqlBillRecordRepository repository = 
 				new MysqlBillRecordRepository(manager);
-
-			for (BillRecord bill : repository.fetchAll()) {
-				System.out.println(bill);
-			}
+			BillConsolePrinter printer = new BillConsolePrinter(repository);
+			printer.print();
 		}
 		catch (Exception e) {
 			System.err.println("exiting due to uncaught failure: " + e);

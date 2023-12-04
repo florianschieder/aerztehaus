@@ -18,15 +18,20 @@ public class BillRecord
 		this.service = service;
 		this.price = price;
 	}
-	
-	@Override
-	public String toString()
-	{
-		return String.format(
-			"%s %s (%s: %.2f€)",
-			this.surname,
-			this.prename,
-			this.service,
-			this.price);
+
+	public String getPrename() {
+		return prename;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public String getService() {
+		return service;
+	}
+
+	public double getPrice() {
+		return price;
 	}
 }
