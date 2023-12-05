@@ -2,5 +2,5 @@ package database;
 
 public interface Repository<Entity>
 {
-	Iterable<Entity> fetchAll();
+    Iterable<Entity> fetchAll();
 }
