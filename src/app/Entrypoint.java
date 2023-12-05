@@ -36,9 +36,8 @@ public class Entrypoint
         }
         catch (ArrayIndexOutOfBoundsException e) {
             throw new RuntimeException(
-                    String.format(
-                            "usage: %s DB_HOST DB_USER DB_PASSWORD DB_DATABASE",
-                            args[0]));
+                    "required parameters: "
+                            + "DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE");
         }
     }
 }
