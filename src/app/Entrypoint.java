@@ -2,6 +2,7 @@ package app;
 
 import database.DBManager;
 import database.MysqlConnectionConfiguration;
+import ui.AddPatientWindow;
 
 
 public class Entrypoint
@@ -13,10 +14,11 @@ public class Entrypoint
                     deriveConfigurationFromCommandLine(args);
             DBManager manager = new DBManager(configuration);
 
+            // TODO: yet unused
             MysqlBillRecordRepository repository =
                     new MysqlBillRecordRepository(manager);
-            BillConsolePrinter printer = new BillConsolePrinter(repository);
-            printer.print();
+
+            AddPatientWindow.spawn();
         }
         catch (Exception e) {
             System.err.println("exiting due to uncaught failure: " + e);
