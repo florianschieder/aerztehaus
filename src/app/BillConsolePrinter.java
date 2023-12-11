@@ -1,6 +1,7 @@
 package app;
 
-import database.Repository;
+import app.core.BillRecord;
+import common.db.Repository;
 
 
 public class BillConsolePrinter

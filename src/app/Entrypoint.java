@@ -1,8 +1,9 @@
 package app;
 
-import database.DBManager;
-import database.MysqlConnectionConfiguration;
-import ui.AddPatientWindow;
+import app.db.MysqlBillRecordRepository;
+import app.ui.AddPatientController;
+import common.db.DBManager;
+import common.db.MysqlConnectionConfiguration;
 
 
 public class Entrypoint
@@ -17,8 +18,8 @@ public class Entrypoint
             // TODO: yet unused
             MysqlBillRecordRepository repository =
                 new MysqlBillRecordRepository(manager);
-
-            AddPatientWindow.spawn();
+            AddPatientController controller = new AddPatientController();
+            controller.run();
         }
         catch (Exception e) {
             System.err.println("exiting due to uncaught failure: " + e);

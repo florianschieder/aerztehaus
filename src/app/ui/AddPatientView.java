@@ -1,4 +1,4 @@
-package ui;
+package app.ui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,8 +9,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import app.core.Patient;
+import common.ui.View;
+
 @SuppressWarnings("serial")
-public class AddPatientWindow extends JFrame
+public class AddPatientView
+extends View<Patient, AddPatientController>
 {
     private JTextField prename;
     private JTextField surname;
@@ -18,24 +22,19 @@ public class AddPatientWindow extends JFrame
     private JTextField city;
     private JTextField patientId;
     private JTextField zipCode;
+    private JButton btnNewButton;
 
-    /**
-     * Create the application.
-     */
-    protected AddPatientWindow() {
-        initialize();
-    }
-
-    public static void spawn()
+    public AddPatientView(AddPatientController controller)
     {
-        AddPatientWindow window = new AddPatientWindow();
-        window.setVisible(true);
+        super(controller);
     }
 
     /**
      * Initialize the contents of the frame.
      */
-    private void initialize() {
+    @Override
+    protected void initializeControls()
+    {
         this.setTitle("Patientenverwaltung");
         this.setBounds(100, 100, 450, 278);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -150,7 +149,7 @@ public class AddPatientWindow extends JFrame
         this.getContentPane().add(patientId, patientIdGBC);
         patientId.setColumns(10);
 
-        JButton btnNewButton = new JButton("Hinzufügen");
+        btnNewButton = new JButton("Hinzufügen");
         GridBagConstraints btnNewButtonGBC = new GridBagConstraints();
         btnNewButtonGBC.gridwidth = 2;
         btnNewButtonGBC.insets = new Insets(0, 0, 0, 5);
@@ -160,4 +159,34 @@ public class AddPatientWindow extends JFrame
         this.getContentPane().add(btnNewButton, btnNewButtonGBC);
     }
 
+    @Override
+    protected void setUpListeners()
+    {
+        this.btnNewButton.addActionListener(
+            e -> this.controller.performAction(
+                AddPatientAction.ADD_TO_DATABASE));
+    }
+
+    @Override
+    public void fillFromModel(Patient model)
+    {
+        this.patientId.setText(model.getId());
+        this.prename.setText(model.getPrename());
+        this.surname.setText(model.getSurname());
+        this.street.setText(model.getStreet());
+        this.city.setText(model.getCity());
+        this.zipCode.setText(model.getZipCode());
+    }
+
+    @Override
+    public Patient reflectIntoModel()
+    {
+        return new Patient(
+            this.patientId.getText(),
+            this.prename.getText(),
+            this.surname.getText(),
+            this.street.getText(),
+            this.city.getText(),
+            this.zipCode.getText());
+    }
 }

@@ -1,12 +1,13 @@
-package app;
+package app.db;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.DBManager;
-import database.Repository;
+import app.core.BillRecord;
+import common.db.DBManager;
+import common.db.Repository;
 
 
 public class MysqlBillRecordRepository
