@@ -48,4 +48,11 @@ public class ConnectionConfiguration
     {
         return this.database;
     }
+
+    public DBManager intoDBManager()
+        throws ClassNotFoundException,
+        ManagerInitializationFailedException
+    {
+        return new DBManager(this);
+    }
 }

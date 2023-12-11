@@ -1,8 +1,5 @@
 package app;
 
-import app.db.MysqlBillRecordRepository;
-import app.db.MysqlPatientRepository;
-import app.ui.AddPatientController;
 import common.db.core.DBManager;
 import common.db.mysql.MysqlConnectionConfiguration;
 
@@ -12,20 +9,11 @@ public class Entrypoint
     public static void main(String[] args)
     {
         try {
-            MysqlConnectionConfiguration configuration =
-                deriveConfigurationFromCommandLine(args);
-            DBManager manager = new DBManager(configuration);
-
-            // TODO: yet unused
-            MysqlBillRecordRepository billRepository =
-                new MysqlBillRecordRepository(manager);
-
-            MysqlPatientRepository patientRepository =
-                new MysqlPatientRepository(manager);
-
-            AddPatientController controller =
-                new AddPatientController(patientRepository);
-            controller.run();
+            DBManager manager =
+                deriveConfigurationFromCommandLine(args)
+                .intoDBManager();
+            App app = new App(manager);
+            app.start();
         }
         catch (Exception e) {
             System.err.println("exiting due to uncaught failure: " + e);
