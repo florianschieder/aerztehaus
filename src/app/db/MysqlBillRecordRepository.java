@@ -6,18 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.core.BillRecord;
-import common.db.DBManager;
-import common.db.Repository;
+import common.db.core.DBManager;
+import common.db.mysql.MysqlReadRepository;
 
 
 public class MysqlBillRecordRepository
-implements Repository<BillRecord>
+extends MysqlReadRepository<BillRecord>
 {
-    private DBManager manager;
-
     public MysqlBillRecordRepository(DBManager manager)
     {
-        this.manager = manager;
+        super(manager);
     }
 
     @Override

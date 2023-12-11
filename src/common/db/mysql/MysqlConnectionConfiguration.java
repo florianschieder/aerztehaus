@@ -1,4 +1,6 @@
-package common.db;
+package common.db.mysql;
+
+import common.db.core.ConnectionConfiguration;
 
 public class MysqlConnectionConfiguration
 extends ConnectionConfiguration

@@ -1,20 +1,28 @@
 package common.ui;
 
-public abstract class Controller
-<ModelType, ViewType extends View<ModelType, ?>, ActionType>
+import common.db.repository.Repository;
+
+public abstract class BaseController
+<ModelType,
+ViewType extends View<ModelType, ?>,
+RepositoryType extends Repository<ModelType>,
+ActionType>
 {
     private ViewType view;
     private ModelType model;
 
-    public Controller()
+    protected RepositoryType repository;
+
+    public BaseController(RepositoryType repository)
     {
-        this(null);
+        this(null, repository);
     }
 
-    public Controller(ModelType model)
+    public BaseController(ModelType model, RepositoryType repository)
     {
         this.view = this.constructView();
         this.model = model;
+        this.repository = repository;
     }
 
     protected abstract ViewType constructView();

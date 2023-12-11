@@ -1,4 +1,4 @@
-package common.db;
+package common.db.core;
 
 public class ConnectionConfiguration
 {

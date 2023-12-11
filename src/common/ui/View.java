@@ -4,7 +4,8 @@ import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
 public abstract class View
-<ModelType, ControllerType extends Controller<?, ?, ?>>
+<ModelType,
+ControllerType extends BaseController<?, ?, ?, ?>>
 extends JFrame
 {
     protected ControllerType controller;

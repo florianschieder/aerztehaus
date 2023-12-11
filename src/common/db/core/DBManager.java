@@ -1,4 +1,4 @@
-package common.db;
+package common.db.core;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

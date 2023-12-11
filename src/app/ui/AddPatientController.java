@@ -1,19 +1,21 @@
 package app.ui;
 
 import app.core.Patient;
-import common.ui.Controller;
+import common.db.repository.WriteRepository;
+import common.ui.BaseController;
 
 public class AddPatientController
-extends Controller<Patient, AddPatientView, AddPatientAction>
+extends BaseController
+<Patient, AddPatientView, WriteRepository<Patient>, AddPatientAction>
 {
-    public AddPatientController()
+    public AddPatientController(WriteRepository<Patient> repository)
     {
-        super();
+        super(repository);
     }
 
-    public AddPatientController(Patient model)
+    public AddPatientController(Patient model, WriteRepository<Patient> repository)
     {
-        super(model);
+        super(model, repository);
     }
 
     @Override
@@ -23,6 +25,7 @@ extends Controller<Patient, AddPatientView, AddPatientAction>
         case ADD_TO_DATABASE:
             Patient patient = this.getCurrentModelState();
             System.out.println("would insert new patient: " + patient);
+            this.repository.insert(patient);
             break;
         }
     }

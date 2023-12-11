@@ -1,9 +1,10 @@
 package app;
 
 import app.db.MysqlBillRecordRepository;
+import app.db.MysqlPatientRepository;
 import app.ui.AddPatientController;
-import common.db.DBManager;
-import common.db.MysqlConnectionConfiguration;
+import common.db.core.DBManager;
+import common.db.mysql.MysqlConnectionConfiguration;
 
 
 public class Entrypoint
@@ -16,9 +17,14 @@ public class Entrypoint
             DBManager manager = new DBManager(configuration);
 
             // TODO: yet unused
-            MysqlBillRecordRepository repository =
+            MysqlBillRecordRepository billRepository =
                 new MysqlBillRecordRepository(manager);
-            AddPatientController controller = new AddPatientController();
+
+            MysqlPatientRepository patientRepository =
+                new MysqlPatientRepository(manager);
+
+            AddPatientController controller =
+                new AddPatientController(patientRepository);
             controller.run();
         }
         catch (Exception e) {

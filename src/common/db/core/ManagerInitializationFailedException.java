@@ -1,4 +1,4 @@
-package common.db;
+package common.db.core;
 
 @SuppressWarnings("serial")
 public class ManagerInitializationFailedException extends Exception
