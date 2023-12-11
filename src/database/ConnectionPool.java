@@ -7,9 +7,8 @@ class ConnectionPool
 {
     private ConnectionState[] connections;
 
-    public ConnectionPool(int capacity,
-            ConnectionConfiguration configuration)
-                    throws SQLException
+    public ConnectionPool(int capacity, ConnectionConfiguration configuration)
+        throws SQLException
     {
         this.connections = new ConnectionState[capacity];
 
@@ -22,7 +21,7 @@ class ConnectionPool
         while (true)
             for (ConnectionState possiblyFreeConnection : this.connections) {
                 ConnectionHandle handle =
-                        new ConnectionHandle(possiblyFreeConnection);
+                    new ConnectionHandle(possiblyFreeConnection);
                 try {
                     return handle.getConnection();
                 }

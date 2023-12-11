@@ -24,29 +24,28 @@ implements Repository<BillRecord>
     {
         List<BillRecord> records = new ArrayList<>();
         String query =
-                "SELECT "
-                        + "  P.PatientVorname, P.PatientName,"
-                        + "  ML.Bezeichnung, ML.Preis "
-                        + "FROM Patient P "
-                        + "INNER JOIN Pat_MedLeistung PML"
-                        + "  ON PML.PatientNr = P.PatientenNr "
-                        + "INNER JOIN MedLeistung ML "
-                        + "  ON ML.MLeistungNr = PML.MLeistungsNr";
+            "SELECT "
+                + "  P.PatientVorname, P.PatientName,"
+                + "  ML.Bezeichnung, ML.Preis "
+                + "FROM Patient P "
+                + "INNER JOIN Pat_MedLeistung PML"
+                + "  ON PML.PatientNr = P.PatientenNr "
+                + "INNER JOIN MedLeistung ML "
+                + "  ON ML.MLeistungNr = PML.MLeistungsNr";
 
         try {
             ResultSet resultSet = this.manager.executeQuery(query);
 
             while (resultSet.next())
-                records.add(
-                        new BillRecord(
-                                resultSet.getString(1),
-                                resultSet.getString(2),
-                                resultSet.getString(3),
-                                resultSet.getDouble(4)));
+                records.add(new BillRecord(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getDouble(4)));
         }
         catch (SQLException e) {
             throw new RuntimeException(
-                    "could not fetch records: " + e.toString());
+                "could not fetch records: " + e.toString());
         }
         return records;
     }

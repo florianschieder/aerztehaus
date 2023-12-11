@@ -8,10 +8,10 @@ public class BillRecord
     private double price;
 
     public BillRecord(
-            String prename,
-            String surname,
-            String service,
-            double price)
+        String prename,
+        String surname,
+        String service,
+        double price)
     {
         this.prename = prename;
         this.surname = surname;

@@ -13,7 +13,7 @@ class ConnectionHandle
     }
 
     public Connection getConnection()
-            throws ConnectionInUseException
+        throws ConnectionInUseException
     {
         return this.state.allocateConnection();
     }

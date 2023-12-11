@@ -11,13 +11,13 @@ class ConnectionState
     private Connection connection = null;
 
     public ConnectionState(ConnectionConfiguration conf)
-            throws SQLException
+        throws SQLException
     {
         this.connection =
-                DriverManager
-                .getConnection(conf.getURL(),
-                        conf.getUser(),
-                        conf.getPassword());
+            DriverManager
+            .getConnection(conf.getURL(),
+                conf.getUser(),
+                conf.getPassword());
         this.connection
         .createStatement()
         .execute(String.format("USE %s;", conf.getDatabase()));
@@ -33,7 +33,7 @@ class ConnectionState
     }
 
     public Connection allocateConnection()
-            throws ConnectionInUseException
+        throws ConnectionInUseException
     {
         if (this.isUsed)
             throw new ConnectionInUseException();

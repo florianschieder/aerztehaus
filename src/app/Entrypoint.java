@@ -11,12 +11,12 @@ public class Entrypoint
     {
         try {
             MysqlConnectionConfiguration configuration =
-                    deriveConfigurationFromCommandLine(args);
+                deriveConfigurationFromCommandLine(args);
             DBManager manager = new DBManager(configuration);
 
             // TODO: yet unused
             MysqlBillRecordRepository repository =
-                    new MysqlBillRecordRepository(manager);
+                new MysqlBillRecordRepository(manager);
 
             AddPatientWindow.spawn();
         }
@@ -31,15 +31,15 @@ public class Entrypoint
     {
         try {
             return new MysqlConnectionConfiguration(
-                    args[0],
-                    args[1],
-                    args[2],
-                    args[3]);
+                args[0],
+                args[1],
+                args[2],
+                args[3]);
         }
         catch (ArrayIndexOutOfBoundsException e) {
             throw new RuntimeException(
-                    "required parameters: "
-                            + "DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE");
+                "required parameters: "
+                    + "DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE");
         }
     }
 }

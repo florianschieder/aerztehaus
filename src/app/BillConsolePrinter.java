@@ -16,10 +16,10 @@ public class BillConsolePrinter
     {
         for (BillRecord bill : this.billRecordRepository.fetchAll())
             System.out.println(
-                    String.format("%s\t%s\t%.2f\t%s",
-                            bill.getSurname(),
-                            bill.getPrename(),
-                            bill.getPrice(),
-                            bill.getService()));
+                String.format("%s\t%s\t%.2f\t%s",
+                    bill.getSurname(),
+                    bill.getPrename(),
+                    bill.getPrice(),
+                    bill.getService()));
     }
 }

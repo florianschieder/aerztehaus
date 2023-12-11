@@ -10,12 +10,12 @@ public class ConnectionConfiguration
     private String database;
 
     public ConnectionConfiguration(
-            String dbType,
-            String url,
-            int port,
-            String username,
-            String password,
-            String database)
+        String dbType,
+        String url,
+        int port,
+        String username,
+        String password,
+        String database)
     {
         this.dbType = dbType;
         this.url = url;
@@ -27,10 +27,11 @@ public class ConnectionConfiguration
 
     public String getURL()
     {
-        return String.format("jdbc:%s://%s:%d",
-                this.dbType,
-                this.url,
-                this.port);
+        return String.format(
+            "jdbc:%s://%s:%d",
+            this.dbType,
+            this.url,
+            this.port);
     }
 
     public String getUser()

@@ -12,8 +12,8 @@ public class DBManager
     private ConnectionPool pool;
 
     public DBManager(ConnectionConfiguration configuration)
-            throws ClassNotFoundException,
-            ManagerInitializationFailedException
+        throws ClassNotFoundException,
+        ManagerInitializationFailedException
     {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
