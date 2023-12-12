@@ -33,7 +33,7 @@ extends MysqlReadRepository<BillRecord>
                 + "  ON ML.MLeistungNr = PML.MLeistungsNr";
 
         try {
-            ResultSet resultSet = this.manager.executeQuery(query);
+            ResultSet resultSet = this.manager.executeQueryStmt(query);
 
             while (resultSet.next())
                 records.add(new BillRecord(

@@ -31,7 +31,7 @@ public class DBManager
         }
     }
 
-    public ResultSet executeQuery(String query) throws SQLException
+    public ResultSet executeQueryStmt(String query) throws SQLException
     {
         Connection connection = this.pool.getConnection();
         Statement statement = connection.createStatement();
