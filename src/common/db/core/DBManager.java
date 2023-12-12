@@ -1,6 +1,5 @@
 package common.db.core;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,8 +32,21 @@ public class DBManager
 
     public ResultSet executeQueryStmt(String query) throws SQLException
     {
-        Connection connection = this.pool.getConnection();
-        Statement statement = connection.createStatement();
-        return statement.executeQuery(query);
+        return
+            this.prepareStatement()
+            .executeQuery(query);
+    }
+
+    public void executeManipulatingStmt(String query) throws SQLException
+    {
+        this.prepareStatement().executeUpdate(query);
+    }
+
+    private Statement prepareStatement() throws SQLException
+    {
+        return
+            this.pool
+            .getConnection()
+            .createStatement();
     }
 }
