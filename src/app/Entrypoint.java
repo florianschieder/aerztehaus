@@ -13,7 +13,7 @@ public class Entrypoint
                 deriveConfigurationFromCommandLine(args)
                 .intoDBManager();
             App app = new App(manager);
-            app.start();
+            app.startApp();
         }
         catch (Exception e) {
             System.err.println("exiting due to uncaught failure: " + e);
