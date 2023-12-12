@@ -1,5 +1,7 @@
 package app.db;
 
+import java.sql.SQLException;
+
 import app.core.Patient;
 import common.db.core.DBManager;
 import common.db.mysql.MysqlWriteRepository;
@@ -14,8 +16,17 @@ extends MysqlWriteRepository<Patient>
     }
 
     @Override
-    public void insert(Patient e)
+    public void insert(Patient e) throws SQLException
     {
-        throw new RuntimeException("not yet implemented");
+        String query = String.format(
+            "INSERT INTO Patient "
+                + "VALUES(%d, '%s', '%s', '%s', '%s', '%s')",
+                e.getId(),
+                e.getPrename(),
+                e.getSurname(),
+                e.getStreet(),
+                e.getZipCode(),
+                e.getCity());
+        this.manager.executeManipulatingStmt(query);
     }
 }
