@@ -10,11 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import app.core.Patient;
-import common.ui.View;
+import common.ui.RepositoryView;
 
 @SuppressWarnings("serial")
 public class AddPatientView
-extends View<Patient, AddPatientController>
+extends RepositoryView<Patient, AddPatientController>
 {
     private JTextField prename;
     private JTextField surname;

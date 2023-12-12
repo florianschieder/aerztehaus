@@ -2,10 +2,10 @@ package app.ui;
 
 import app.core.Patient;
 import common.db.repository.WriteRepository;
-import common.ui.BaseController;
+import common.ui.RepositoryController;
 
 public class AddPatientController
-extends BaseController
+extends RepositoryController
 <Patient, AddPatientView, WriteRepository<Patient>, AddPatientAction>
 {
     public AddPatientController(WriteRepository<Patient> repository)
