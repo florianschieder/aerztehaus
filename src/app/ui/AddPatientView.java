@@ -170,7 +170,7 @@ extends RepositoryView<Patient, AddPatientController>
     @Override
     public void fillFromModel(Patient model)
     {
-        this.patientId.setText(model.getId());
+        this.patientId.setText(String.valueOf(model.getId()));
         this.prename.setText(model.getPrename());
         this.surname.setText(model.getSurname());
         this.street.setText(model.getStreet());
@@ -179,14 +179,22 @@ extends RepositoryView<Patient, AddPatientController>
     }
 
     @Override
-    public Patient reflectIntoModel()
+    public Patient reflectIntoModel() throws NumberFormatException
     {
-        return new Patient(
-            this.patientId.getText(),
-            this.prename.getText(),
-            this.surname.getText(),
-            this.street.getText(),
-            this.city.getText(),
-            this.zipCode.getText());
+        try {
+            return new Patient(
+                Integer.parseInt(this.patientId.getText()),
+                this.prename.getText(),
+                this.surname.getText(),
+                this.street.getText(),
+                this.city.getText(),
+                this.zipCode.getText());
+        }
+        catch (NumberFormatException e) {
+            throw new NumberFormatException(
+                String.format(
+                    "patient ID '%s' is invalid",
+                    this.patientId.getText()));
+        }
     }
 }

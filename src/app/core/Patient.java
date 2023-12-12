@@ -3,7 +3,7 @@ package app.core;
 // TODO: user inputs are not validated in any kind.
 public class Patient
 {
-    private String id;
+    private int id;
     private String prename;
     private String surname;
     private String street;
@@ -11,7 +11,7 @@ public class Patient
     private String zipCode;
 
     public Patient(
-        String id,
+        int id,
         String prename,
         String surname,
         String street,
@@ -26,12 +26,12 @@ public class Patient
         this.zipCode = zipCode;
     }
 
-    public String getId()
+    public int getId()
     {
         return id;
     }
 
-    public void setId(String id)
+    public void setId(int id)
     {
         this.id = id;
     }

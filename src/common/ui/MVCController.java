@@ -14,9 +14,15 @@ extends SimpleController<ViewType, ActionType>
         this.model = model;
     }
 
-    public ModelType getCurrentModelState()
+    public ModelType getCurrentModelState() throws Exception
     {
-        this.model = this.view.reflectIntoModel();
+        try {
+            this.model = this.view.reflectIntoModel();
+        }
+        // tie app programmers to explicit error handling.
+        catch (Exception ex) {
+            throw ex;
+        }
         return this.model;
     }
 }
