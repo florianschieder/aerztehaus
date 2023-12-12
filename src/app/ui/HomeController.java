@@ -27,7 +27,8 @@ extends SimpleController<HomeView, HomeAction>
             this.app.runAddPatientController();
             break;
         case EXPORT_RECORDS:
-            throw new RuntimeException("gibts noch nicht.");
+            this.app.exportRecords();
+            break;
         case QUIT:
             System.exit(0);
             break;

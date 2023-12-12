@@ -1,5 +1,7 @@
 package app;
 
+import javax.swing.JOptionPane;
+
 import app.core.BillRecord;
 import app.core.Patient;
 import app.db.MysqlBillRecordRepository;
@@ -32,5 +34,22 @@ public class App
         AddPatientController controller =
             new AddPatientController(this.patientRepository);
         controller.run();
+    }
+
+    public void exportRecords()
+    {
+        BillRecordExporter exporter =
+            new BillRecordExporter(this.billRecordRepository);
+        try {
+            exporter.run();
+        }
+        catch (Exception e) {
+            // TODO duplicate code
+            JOptionPane.showMessageDialog(
+                null,
+                e.toString(),
+                "Patientenverwaltung - Fehler",
+                JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
