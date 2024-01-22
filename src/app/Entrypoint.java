@@ -24,6 +24,7 @@ public class Entrypoint
     private static MysqlConnectionConfiguration
     deriveConfigurationFromCommandLine(String[] args)
     {
+        // keep this consistent with the README file
         try {
             return new MysqlConnectionConfiguration(
                 args[0],
