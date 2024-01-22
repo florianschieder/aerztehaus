@@ -9,8 +9,9 @@ extends ConnectionConfiguration
         String url,
         String username,
         String password,
-        String database)
+        String database,
+        int capacity)
     {
-        super("mysql", url, 3306, username, password, database);
+        super("mysql", url, 3306, username, password, database, capacity);
     }
 }

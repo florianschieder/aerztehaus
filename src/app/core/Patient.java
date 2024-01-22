@@ -89,13 +89,12 @@ public class Patient
     @Override
     public String toString() {
         return String.format(
-            "Patient"
-                + "(id=%d, prename=%s, surname=%s, street=%s, city=%s, zipCode=%s)",
-                this.getId(),
-                this.getPrename(),
-                this.getSurname(),
-                this.getStreet(),
-                this.getCity(),
-                this.getZipCode());
+            "Patient(%d, %s, %s, %s %s)",
+            this.getId(),
+            this.getPrename(),
+            this.getSurname(),
+            this.getStreet(),
+            this.getZipCode(),
+            this.getCity());
     }
 }

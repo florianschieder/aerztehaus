@@ -8,6 +8,7 @@ public class ConnectionConfiguration
     private String username;
     private String password;
     private String database;
+	private int capacity;
 
     public ConnectionConfiguration(
         String dbType,
@@ -15,7 +16,8 @@ public class ConnectionConfiguration
         int port,
         String username,
         String password,
-        String database)
+        String database,
+        int capacity)
     {
         this.dbType = dbType;
         this.url = url;
@@ -23,6 +25,7 @@ public class ConnectionConfiguration
         this.username = username;
         this.password = password;
         this.database = database;
+        this.capacity = capacity;
     }
 
     public String getURL()
@@ -55,4 +58,9 @@ public class ConnectionConfiguration
     {
         return new DBManager(this);
     }
+
+	public int getCapacity()
+	{
+		return this.capacity;
+	}
 }

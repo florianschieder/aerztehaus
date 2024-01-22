@@ -1,4 +1,4 @@
-package app;
+package app.core;
 
 import common.db.core.DBManager;
 import common.db.mysql.MysqlConnectionConfiguration;
@@ -6,6 +6,8 @@ import common.db.mysql.MysqlConnectionConfiguration;
 
 public class Entrypoint
 {
+	private final static int DB_POOL_SIZE = 1;
+	
     public static void main(String[] args)
     {
         try {
@@ -30,7 +32,8 @@ public class Entrypoint
                 args[0],
                 args[1],
                 args[2],
-                args[3]);
+                args[3],
+                DB_POOL_SIZE);
         }
         catch (ArrayIndexOutOfBoundsException e) {
             throw new RuntimeException(

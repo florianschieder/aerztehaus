@@ -1,21 +1,17 @@
-package app;
+package app.core;
 
-import javax.swing.JOptionPane;
-
-import app.core.BillRecord;
-import app.core.Patient;
 import app.db.MysqlBillRecordRepository;
 import app.db.MysqlPatientRepository;
+import app.repository.BillRecordRepository;
+import app.repository.PatientRepository;
 import app.ui.AddPatientController;
 import app.ui.HomeController;
 import common.db.core.DBManager;
-import common.db.repository.ReadRepository;
-import common.db.repository.WriteRepository;
 
 public class App
 {
-    private ReadRepository<BillRecord> billRecordRepository;
-    private WriteRepository<Patient> patientRepository;
+    private BillRecordRepository billRecordRepository;
+    private PatientRepository patientRepository;
 
     public App(DBManager manager)
     {
@@ -23,7 +19,7 @@ public class App
         this.patientRepository = new MysqlPatientRepository(manager);
     }
 
-    public void startApp()
+    public void startApp() throws Exception
     {
         HomeController controller = new HomeController(this);
         controller.run();
@@ -36,20 +32,10 @@ public class App
         controller.run();
     }
 
-    public void exportRecords()
+    public void exportRecords() throws Exception
     {
         BillRecordExporter exporter =
             new BillRecordExporter(this.billRecordRepository);
-        try {
-            exporter.run();
-        }
-        catch (Exception e) {
-            // TODO duplicate code
-            JOptionPane.showMessageDialog(
-                null,
-                e.toString(),
-                "Patientenverwaltung - Fehler",
-                JOptionPane.ERROR_MESSAGE);
-        }
+        exporter.run();
     }
 }

@@ -7,12 +7,16 @@ class ConnectionPool
 {
     private ConnectionState[] connections;
 
-    public ConnectionPool(int capacity, ConnectionConfiguration configuration)
+    public ConnectionPool(ConnectionConfiguration configuration)
         throws SQLException
     {
-        this.connections = new ConnectionState[capacity];
+    	if (configuration.getCapacity() < 1) {
+    		throw new RuntimeException("capacity must be greater or equal to 1");
+    	}
+    	
+        this.connections = new ConnectionState[configuration.getCapacity()];
 
-        for (int i = 0; i < capacity; i++)
+        for (int i = 0; i < configuration.getCapacity(); i++)
             this.connections[i] = new ConnectionState(configuration);
     }
 

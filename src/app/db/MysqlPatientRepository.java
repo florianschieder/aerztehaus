@@ -3,12 +3,14 @@ package app.db;
 import java.sql.SQLException;
 
 import app.core.Patient;
+import app.repository.PatientRepository;
 import common.db.core.DBManager;
-import common.db.mysql.MysqlWriteRepository;
+import common.db.mysql.MysqlRepository;
 
 
 public class MysqlPatientRepository
-extends MysqlWriteRepository<Patient>
+extends MysqlRepository
+implements PatientRepository
 {
     public MysqlPatientRepository(DBManager manager)
     {
@@ -16,17 +18,17 @@ extends MysqlWriteRepository<Patient>
     }
 
     @Override
-    public void insert(Patient e) throws SQLException
+    public void insert(Patient patient) throws SQLException
     {
         String query = String.format(
             "INSERT INTO Patient "
                 + "VALUES(%d, '%s', '%s', '%s', '%s', '%s')",
-                e.getId(),
-                e.getPrename(),
-                e.getSurname(),
-                e.getStreet(),
-                e.getZipCode(),
-                e.getCity());
+                patient.getId(),
+                patient.getPrename(),
+                patient.getSurname(),
+                patient.getStreet(),
+                patient.getZipCode(),
+                patient.getCity());
         this.manager.executeUpdate(query);
     }
 }

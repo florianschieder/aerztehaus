@@ -3,21 +3,20 @@ package app.ui;
 import javax.swing.JOptionPane;
 
 import app.core.Patient;
-import common.db.repository.WriteRepository;
-import common.ui.RepositoryController;
+import app.repository.PatientRepository;
+import common.ui.MVCController;
 
 public class AddPatientController
-extends RepositoryController
-<Patient, AddPatientView, WriteRepository<Patient>, AddPatientAction>
+extends MVCController
+<Patient, AddPatientView, AddPatientAction>
 {
-    public AddPatientController(WriteRepository<Patient> repository)
-    {
-        super(repository);
-    }
+	private PatientRepository repository;
+	
 
-    public AddPatientController(Patient model, WriteRepository<Patient> repository)
+    public AddPatientController(PatientRepository repository)
     {
-        super(model, repository);
+        super(null);
+        this.repository = repository;
     }
 
     @Override
@@ -25,11 +24,11 @@ extends RepositoryController
     {
         switch (action) {
         case ADD_TO_DATABASE:
-            try {
-                Patient patient = this.getCurrentModelState();
-                System.out.println("[DEBUG] would insert new patient: " + patient);
-                this.repository.insert(patient);
-                JOptionPane.showMessageDialog(
+        	try {
+	        	Patient patient = this.getCurrentModelState();
+	            System.out.println("[DEBUG] would insert new patient: " + patient);
+	            this.repository.insert(patient);
+	            JOptionPane.showMessageDialog(
                     this.view,
                     String.format(
                         "Patient %s %s wurde eingefügt",
@@ -37,14 +36,10 @@ extends RepositoryController
                         patient.getSurname()),
                     "Patientenverwaltung",
                     JOptionPane.INFORMATION_MESSAGE);
-            }
-            catch (Exception e) {
-                JOptionPane.showMessageDialog(
-                    this.view,
-                    e.toString(),
-                    "Patientenverwaltung - Fehler",
-                    JOptionPane.ERROR_MESSAGE);
-            }
+        	}
+        	catch (Exception e) {
+        		this.view.showErrorMessage(e);
+        	}
             break;
         }
     }

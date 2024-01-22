@@ -7,7 +7,6 @@ import java.sql.Statement;
 
 public class DBManager
 {
-    private static int POOL_SIZE = 10;
     private ConnectionPool pool;
 
     public DBManager(ConnectionConfiguration configuration)
@@ -15,7 +14,7 @@ public class DBManager
         ManagerInitializationFailedException
     {
         try {
-            this.pool = new ConnectionPool(POOL_SIZE, configuration);
+            this.pool = new ConnectionPool(configuration);
         }
         catch (SQLException e) {
             throw new ManagerInitializationFailedException(e.toString());

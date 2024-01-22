@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.core.BillRecord;
+import app.repository.BillRecordRepository;
 import common.db.core.DBManager;
-import common.db.mysql.MysqlReadRepository;
+import common.db.mysql.MysqlRepository;
 
 
 public class MysqlBillRecordRepository
-extends MysqlReadRepository<BillRecord>
+extends MysqlRepository
+implements BillRecordRepository
 {
     public MysqlBillRecordRepository(DBManager manager)
     {
@@ -19,7 +21,7 @@ extends MysqlReadRepository<BillRecord>
     }
 
     @Override
-    public Iterable<BillRecord> fetchAll()
+    public Iterable<BillRecord> fetchAll() throws SQLException
     {
         List<BillRecord> records = new ArrayList<>();
         String query =
@@ -32,20 +34,13 @@ extends MysqlReadRepository<BillRecord>
                 + "INNER JOIN MedLeistung ML "
                 + "  ON ML.MLeistungNr = PML.MLeistungsNr";
 
-        try {
-            ResultSet resultSet = this.manager.executeQuery(query);
-
-            while (resultSet.next())
-                records.add(new BillRecord(
-                    resultSet.getString(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3),
-                    resultSet.getDouble(4)));
-        }
-        catch (SQLException e) {
-            throw new RuntimeException(
-                "could not fetch records: " + e.toString());
-        }
+        ResultSet resultSet = this.manager.executeQuery(query);
+        while (resultSet.next())
+            records.add(new BillRecord(
+                resultSet.getString(1),
+                resultSet.getString(2),
+                resultSet.getString(3),
+                resultSet.getDouble(4)));
         return records;
     }
 }

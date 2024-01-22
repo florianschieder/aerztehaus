@@ -1,7 +1,14 @@
 package common.ui;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
+/**
+ * A simple abstract view based on Swing.
+ *
+ * @param <ControllerType> the controller which handles
+ * the interactions with a simple view.
+ */
 @SuppressWarnings("serial")
 public abstract class SimpleView
 <ControllerType extends SimpleController<?, ?>>
@@ -22,5 +29,14 @@ extends JFrame
     public void spawn()
     {
         this.setVisible(true);
+    }
+    
+    public void showErrorMessage(Exception e)
+    {
+    	JOptionPane.showMessageDialog(
+            this,
+            e.toString(),
+            "Patientenverwaltung - Fehler",
+            JOptionPane.ERROR_MESSAGE);
     }
 }

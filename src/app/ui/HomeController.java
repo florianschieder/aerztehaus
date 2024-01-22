@@ -1,6 +1,6 @@
 package app.ui;
 
-import app.App;
+import app.core.App;
 import common.ui.SimpleController;
 
 public class HomeController
@@ -27,7 +27,12 @@ extends SimpleController<HomeView, HomeAction>
             this.app.runAddPatientController();
             break;
         case EXPORT_RECORDS:
-            this.app.exportRecords();
+          	try {
+          		this.app.exportRecords();
+          	}
+          	catch (Exception e) {
+          		this.view.showErrorMessage(e);
+          	}
             break;
         case QUIT:
             System.exit(0);
