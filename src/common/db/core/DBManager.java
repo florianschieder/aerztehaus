@@ -30,14 +30,14 @@ public class DBManager
         }
     }
 
-    public ResultSet executeQueryStmt(String query) throws SQLException
+    public ResultSet executeQuery(String query) throws SQLException
     {
         return
             this.prepareStatement()
             .executeQuery(query);
     }
 
-    public void executeManipulatingStmt(String query) throws SQLException
+    public void executeUpdate(String query) throws SQLException
     {
         this.prepareStatement().executeUpdate(query);
     }

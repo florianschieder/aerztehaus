@@ -27,6 +27,6 @@ extends MysqlWriteRepository<Patient>
                 e.getStreet(),
                 e.getZipCode(),
                 e.getCity());
-        this.manager.executeManipulatingStmt(query);
+        this.manager.executeUpdate(query);
     }
 }
