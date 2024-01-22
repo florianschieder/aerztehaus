@@ -15,14 +15,6 @@ public class DBManager
         ManagerInitializationFailedException
     {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e) {
-            System.err.println("could not load drivers");
-            throw e;
-        }
-
-        try {
             this.pool = new ConnectionPool(POOL_SIZE, configuration);
         }
         catch (SQLException e) {
