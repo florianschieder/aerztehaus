@@ -3,15 +3,16 @@ package common.db.core;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-class ConnectionPool
+final class ConnectionPool
 {
     private ConnectionState[] connections;
 
-    public ConnectionPool(ConnectionConfiguration configuration)
+    public ConnectionPool(final ConnectionConfiguration configuration)
         throws SQLException
     {
     	if (configuration.getCapacity() < 1) {
-    		throw new RuntimeException("capacity must be greater or equal to 1");
+    		throw new RuntimeException(
+    			"capacity must be greater or equal to 1");
     	}
     	
         this.connections = new ConnectionState[configuration.getCapacity()];

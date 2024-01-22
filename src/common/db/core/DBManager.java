@@ -5,11 +5,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class DBManager
+final public class DBManager
 {
     private ConnectionPool pool;
 
-    public DBManager(ConnectionConfiguration configuration)
+    public DBManager(final ConnectionConfiguration configuration)
         throws ClassNotFoundException,
         ManagerInitializationFailedException
     {
@@ -21,14 +21,14 @@ public class DBManager
         }
     }
 
-    public ResultSet executeQuery(String query) throws SQLException
+    public ResultSet executeQuery(final String query) throws SQLException
     {
         return
             this.prepareStatement()
             .executeQuery(query);
     }
 
-    public void executeUpdate(String query) throws SQLException
+    public void executeUpdate(final String query) throws SQLException
     {
         this.prepareStatement().executeUpdate(query);
     }

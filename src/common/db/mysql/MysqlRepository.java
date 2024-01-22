@@ -10,7 +10,7 @@ public abstract class MysqlRepository
 {
     protected DBManager manager;
 
-    public MysqlRepository(DBManager manager)
+    public MysqlRepository(final DBManager manager)
     {
         this.manager = manager;
     }

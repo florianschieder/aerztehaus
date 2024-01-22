@@ -3,11 +3,11 @@ package common.db.core;
 import java.sql.Connection;
 
 
-class ConnectionHandle
+final class ConnectionHandle
 {
     private ConnectionState state;
 
-    public ConnectionHandle(ConnectionState state)
+    public ConnectionHandle(final ConnectionState state)
     {
         this.state = state;
     }

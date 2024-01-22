@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-class ConnectionState
+final class ConnectionState
 {
     private boolean isUsed = false;
     private Connection connection = null;
 
-    public ConnectionState(ConnectionConfiguration conf)
+    public ConnectionState(final ConnectionConfiguration conf)
         throws SQLException
     {
         this.connection =

@@ -11,13 +11,13 @@ public class ConnectionConfiguration
 	private int capacity;
 
     public ConnectionConfiguration(
-        String dbType,
-        String url,
-        int port,
-        String username,
-        String password,
-        String database,
-        int capacity)
+        final String dbType,
+        final String url,
+        final int port,
+        final String username,
+        final String password,
+        final String database,
+        final int capacity)
     {
         this.dbType = dbType;
         this.url = url;
@@ -28,7 +28,7 @@ public class ConnectionConfiguration
         this.capacity = capacity;
     }
 
-    public String getURL()
+    public final String getURL()
     {
         return String.format(
             "jdbc:%s://%s:%d",
@@ -37,29 +37,29 @@ public class ConnectionConfiguration
             this.port);
     }
 
-    public String getUser()
+    public final String getUser()
     {
         return this.username;
     }
 
-    public String getPassword()
+    public final String getPassword()
     {
         return this.password;
     }
 
-    public String getDatabase()
+    public final String getDatabase()
     {
         return this.database;
     }
 
-    public DBManager intoDBManager()
+    public final DBManager intoDBManager()
         throws ClassNotFoundException,
         ManagerInitializationFailedException
     {
         return new DBManager(this);
     }
 
-	public int getCapacity()
+	public final int getCapacity()
 	{
 		return this.capacity;
 	}
